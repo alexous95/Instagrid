@@ -8,6 +8,8 @@
 
 import UIKit
 
+//This class is used to lighten our ViewController
+
 class ShareView: UIView {
 
     @IBOutlet var image : UIImageView!

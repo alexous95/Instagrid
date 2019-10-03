@@ -84,7 +84,7 @@
                                         <state key="normal" image="plus"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.26716036805362875" green="0.58330669253793221" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.24253982564932244" green="0.48066176522388487" blue="0.79765624999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="3B3-KB-MuW" firstAttribute="leading" secondItem="zev-IQ-hDu" secondAttribute="leading" constant="8" id="0A1-TX-Oye"/>
                                     <constraint firstAttribute="trailing" secondItem="6vG-Sq-He6" secondAttribute="trailing" constant="8" id="0Lv-H1-fnV"/>
@@ -150,11 +150,17 @@
                                     <constraint firstAttribute="height" constant="80" id="5l6-hE-b3Q"/>
                                     <constraint firstAttribute="width" constant="80" id="Qov-IX-ysU"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="Layout 1"/>
+                                <state key="normal" backgroundImage="Layout1"/>
+                                <connections>
+                                    <action selector="buttonWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M3L-C1-J28"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnN-HM-6le" userLabel="Layout3Button">
                                 <rect key="frame" x="266" y="742" width="82" height="80"/>
-                                <state key="normal" backgroundImage="Layout 3"/>
+                                <state key="normal" backgroundImage="Layout3"/>
+                                <connections>
+                                    <action selector="buttonWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cD3-JE-496"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lU-6u-M6M" userLabel="Layout2Button">
                                 <rect key="frame" x="166" y="742" width="80" height="80"/>
@@ -162,7 +168,10 @@
                                     <constraint firstAttribute="width" constant="80" id="YPD-zZ-9PA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" backgroundImage="Layout 2"/>
+                                <state key="normal" backgroundImage="Layout2"/>
+                                <connections>
+                                    <action selector="buttonWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nql-QD-D0m"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.6587914341383253" green="0.87678615093795265" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -209,9 +218,9 @@
     </scenes>
     <resources>
         <image name="Arrow Up" width="4.5" height="3.5"/>
-        <image name="Layout 1" width="27" height="27"/>
-        <image name="Layout 2" width="27" height="27"/>
-        <image name="Layout 3" width="27" height="27"/>
+        <image name="Layout1" width="27" height="27"/>
+        <image name="Layout2" width="27" height="27"/>
+        <image name="Layout3" width="27" height="27"/>
         <image name="plus" width="40" height="40"/>
     </resources>
 </document>
