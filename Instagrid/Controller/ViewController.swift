@@ -41,23 +41,47 @@ class ViewController: UIViewController {
     //MARK: - PRIVATE
     
     //This is the function called in the selector from the SwipeGesture initializer 
-    @objc private func swipeViewUp( _ sender : UISwipeGestureRecognizer ){
+    @objc private func swipeView( _ sender : UISwipeGestureRecognizer ){
         switch sender.direction {
         // If direction is up then we call the transform function with
         case .up :
             print("ok haut")
-            transformGridViewUpWith(gestureDirection : sender)
+            transformGridViewWith(gestureDirection : sender)
+        case .left:
+            print("gauche ok")
+            transformGridViewWith(gestureDirection: sender)
         default :
             break
         }
     }
     
+   
+    
     //This function create a translation movement for our view
-    private func transformGridViewUpWith(gestureDirection : UISwipeGestureRecognizer){
+    private func transformGridViewWith(gestureDirection : UISwipeGestureRecognizer){
         switch gestureDirection.direction {
         case .up:
             //We create a transformation to move the gridView out of the screen
             let translationTransform = CGAffineTransform(translationX: 0.0, y: -screenHeight)
+            
+            //Now we animate that transition with the animate method from UIView
+            UIView.animate(withDuration: 1.0, animations: {
+                self.gridView.transform = translationTransform
+            }) { (success) in
+                if success {
+                    //if the animation is successful we call another function in the completion closure
+                    
+                    //This method allows us to create a UIImage from the view choosen
+                    let renderer = UIGraphicsImageRenderer(size: self.gridView.bounds.size)
+                    let image = renderer.image { contex in
+                        self.gridView.drawHierarchy(in: self.gridView.bounds, afterScreenUpdates: true)
+                    }
+                    self.shareGridView(image: image)
+                }
+            }
+            
+        case .left :
+            let translationTransform = CGAffineTransform(translationX: -screenWidth*2, y: 0.0)
             
             //Now we animate that transition with the animate method from UIView
             UIView.animate(withDuration: 1.0, animations: {
@@ -108,15 +132,18 @@ class ViewController: UIViewController {
     
     private func setupSwipeGesture(){
         //We first create a swipeGestureRecognizer
-        let swipeGestureRecongnizerUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeViewUp(_ :)))
-        
+        let swipeGestureRecongnizerUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
+        let swipeGestureRecognizerLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
         //We specify his direction
         swipeGestureRecongnizerUp.direction = .up
+        swipeGestureRecognizerLeft.direction = .left
 
         //Then we had this gesture to the targeted view
         self.shareView.addGestureRecognizer(swipeGestureRecongnizerUp)
+        self.shareView.addGestureRecognizer(swipeGestureRecognizerLeft)
     }
     
+    // This function is used to setup the button and to give them tags so they can be recognized
     private func setupButton(){
         self.topRectangleButton.isHidden = true
         self.bottomLeftButton.isHidden = true
@@ -136,7 +163,7 @@ class ViewController: UIViewController {
         
     }
     
-    
+    // This function is used to change the layout
     private func changeLayout(layout : Int){
            switch layout {
            case 1:
@@ -200,9 +227,10 @@ class ViewController: UIViewController {
     }
 }
 
-
+// MARK: - EXTENSIONS
 extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    // This function is used to present an actionSheet to let the user choose between different options
     private func showImagePickerActionSheet(){
         let photoLibraryAction = UIAlertAction(title: "Choose from Library", style: .default) { (action) in
             self.showImagePickerController(sourceType: .photoLibrary)
