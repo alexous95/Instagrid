@@ -12,7 +12,7 @@ import UIKit
 
 class ShareView: UIView {
 
-    @IBOutlet var image : UIImageView!
-    @IBOutlet var swipeLabel : UILabel!
+    @IBOutlet var image: UIImageView!
+    @IBOutlet var swipeLabel: UILabel!
     
 }
