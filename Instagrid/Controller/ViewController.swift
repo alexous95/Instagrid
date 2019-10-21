@@ -28,8 +28,10 @@ class ViewController: UIViewController {
   
   let screenHeight = UIScreen.main.bounds.height
   let screenWidth = UIScreen.main.bounds.width
+  var imageDictionnary = ImageModel()
   
   var buttonPressed = UIButton()
+  var selectedLayout : Int = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -78,12 +80,12 @@ class ViewController: UIViewController {
     case .left:
       let translationTransform = CGAffineTransform(translationX: -screenWidth*2, y: 0.0)
       
-      //Now we animate that transition with the animate method from UIView
+      // Now we animate that transition with the animate method from UIView
       UIView.animate(withDuration: 1.0, animations: {
         self.gridView.transform = translationTransform
       }) { (success) in
         if success {
-          //if the animation is successful we call another function in the completion closure
+          // if the animation is successful we call another function in the completion closure
           let image = RenderImage.createImage(from: self.gridView)
           self.shareGridView(image: image)
         }
@@ -123,6 +125,13 @@ class ViewController: UIViewController {
     topRightButton.setImage(UIImage(named: "plus"), for: .normal)
   }
   
+  /// This function is used to change the image of the button that is passed as a parameter
+  private func changeGridButtonImageFor(button: UIButton){
+    let imageData = try! Data(contentsOf: imageDictionnary.getImageURLFrom(tag: button.tag)!, options: [])
+    button.setImage(UIImage(data: imageData), for: .normal)
+    
+  }
+  
   /// This function is used to setup the swipe gestures and add them to the view
   private func setupSwipeGesture(){
     // We first create a swipeGestureRecognizer
@@ -137,7 +146,7 @@ class ViewController: UIViewController {
     shareView.addGestureRecognizer(swipeGestureRecognizerLeft)
   }
   
-  /// This function is used to setup the button and to give them tags so they can be recognized
+  /// This function is used to setup the buttons and to give them tags so they can be recognized
   private func setupButton(){
     topRectangleButton.isHidden = true
     bottomLeftButton.isHidden = true
@@ -157,7 +166,7 @@ class ViewController: UIViewController {
     
   }
   
-  /// This function is used to change the layout
+  /// This function is used to change the layout when a layout button is pressed
   private func changeLayout(layout : Int){
     switch layout {
     case 1:
@@ -192,8 +201,9 @@ class ViewController: UIViewController {
     }
   }
   
-  //MARK: - ACTIONS
+  // MARK: - ACTIONS
   
+  /// This action is used to change the layout and set correctly the images of every layout buttons on screen
   @IBAction func buttonLayoutWasPressed(_ sender: UIButton) {
     switch sender.tag {
     case 10:
@@ -218,6 +228,7 @@ class ViewController: UIViewController {
     }
   }
   
+  /// This action is used when a button to choose an image is pressed. When a button is pressed, the imagePickerController appears on screen
   @IBAction func buttonImagePickerWasPressed(_ sender: UIButton) {
     self.buttonPressed = sender
     showImagePickerActionSheet()
@@ -258,11 +269,17 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
   }
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    if let editedImage = info[.editedImage] as? UIImage {
-      self.buttonPressed.setImage(editedImage, for: .normal)
+    
+    let URL = info[.imageURL]
+    
+    if (info[.editedImage] as? UIImage) != nil {
+      imageDictionnary.imageDict[buttonPressed.tag] = URL as? URL
+      changeGridButtonImageFor(button: buttonPressed)
+      
     }
-    else if let originalImage = info[.originalImage] as? UIImage {
-      self.buttonPressed.setImage(originalImage, for: .normal)
+    else if (info[.originalImage] as? UIImage) != nil {
+      imageDictionnary.imageDict[buttonPressed.tag] = URL as? URL
+      changeGridButtonImageFor(button: buttonPressed)
     }
     else {
       print("Pas d'immage")
