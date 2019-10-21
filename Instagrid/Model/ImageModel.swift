@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This class is used to manage an image from a model
 class ImageModel {
   
   /// A dictionnary used to store the URL of the selected images. The key used to retrieve the URLs are the button's tag

@@ -26,12 +26,14 @@ class ViewController: UIViewController {
   @IBOutlet weak var layout2Button: UIButton!
   @IBOutlet weak var layout3Button: UIButton!
   
+  // MARK: - VARIABLES
+  
   let screenHeight = UIScreen.main.bounds.height
   let screenWidth = UIScreen.main.bounds.width
   var imageDictionnary = ImageModel()
-  
   var buttonPressed = UIButton()
-  var selectedLayout : Int = 0
+  
+  // MARK: - VIEW LIFE CYCLE
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,17 +49,14 @@ class ViewController: UIViewController {
     switch sender.direction {
     // If direction is up then we call the transform function with
     case .up:
-      print("ok haut")
       transformGridViewWith(gestureDirection: sender)
+      
     case .left:
-      print("gauche ok")
       transformGridViewWith(gestureDirection: sender)
     default :
       break
     }
   }
-  
-  
   
   /// This function create a translation movement for our view
   private func transformGridViewWith(gestureDirection: UISwipeGestureRecognizer) {
@@ -96,9 +95,9 @@ class ViewController: UIViewController {
   }
   
   /// This function create an activity controller to share our images
-  private func shareGridView(image : UIImage) {
+  private func shareGridView(image: UIImage) {
     let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-    activityController.completionWithItemsHandler = {(UIActivityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+    activityController.completionWithItemsHandler = { (UIActivityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
       self.backGridView()
     }
     present(activityController, animated: true, completion: nil)
@@ -117,19 +116,22 @@ class ViewController: UIViewController {
   
   /// This functions brings back the grid view to its original state
   private func originalGridView() {
-    topRectangleButton.setImage(UIImage(named: "plus"), for: .normal)
-    bottomRectangleButton.setImage(UIImage(named: "plus"), for: .normal)
-    bottomLeftButton.setImage(UIImage(named: "plus"), for: .normal)
-    bottomRightButton.setImage(UIImage(named: "plus"), for: .normal)
-    topLeftButton.setImage(UIImage(named: "plus"), for: .normal)
-    topRightButton.setImage(UIImage(named: "plus"), for: .normal)
+    let plusImage = UIImage(named: "plus")
+    topRectangleButton.setImage(plusImage, for: .normal)
+    bottomRectangleButton.setImage(plusImage, for: .normal)
+    bottomLeftButton.setImage(plusImage, for: .normal)
+    bottomRightButton.setImage(plusImage, for: .normal)
+    topLeftButton.setImage(plusImage, for: .normal)
+    topRightButton.setImage(plusImage, for: .normal)
+    imageDictionnary.imageDict = [:]
   }
   
   /// This function is used to change the image of the button that is passed as a parameter
   private func changeGridButtonImageFor(button: UIButton){
-    let imageData = try! Data(contentsOf: imageDictionnary.getImageURLFrom(tag: button.tag)!, options: [])
-    button.setImage(UIImage(data: imageData), for: .normal)
-    
+    if let url = imageDictionnary.getImageURLFrom(tag: button.tag) {
+      let imageData = try! Data(contentsOf: url, options: [])
+      button.setImage(UIImage(data: imageData), for: .normal)
+    }
   }
   
   /// This function is used to setup the swipe gestures and add them to the view
@@ -137,6 +139,7 @@ class ViewController: UIViewController {
     // We first create a swipeGestureRecognizer
     let swipeGestureRecongnizerUp  = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
     let swipeGestureRecognizerLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
+    
     // We specify his direction
     swipeGestureRecongnizerUp.direction  = .up
     swipeGestureRecognizerLeft.direction = .left
@@ -235,8 +238,6 @@ class ViewController: UIViewController {
   }
 }
 
-
-
 // MARK: - EXTENSIONS
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
@@ -290,4 +291,3 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
   }
   
 }
-
