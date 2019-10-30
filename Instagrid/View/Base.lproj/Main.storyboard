@@ -283,7 +283,7 @@
                                 <rect key="frame" x="54" y="50" width="155" height="315"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2b-yc-aCp">
-                                        <rect key="frame" x="8.3333333333333428" y="146" width="138" height="23.333333333333343"/>
+                                        <rect key="frame" x="18.333333333333329" y="146" width="138" height="23.333333333333343"/>
                                         <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -470,7 +470,7 @@
                             <constraint firstItem="ndG-9n-g7e" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LeN-Qp-aNK"/>
                             <constraint firstItem="zev-IQ-hDu" firstAttribute="top" secondItem="BO7-37-w1D" secondAttribute="bottom" constant="5" id="Lj8-EX-AE2"/>
                             <constraint firstItem="zev-IQ-hDu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Bp-qa-Rtv" secondAttribute="trailing" constant="20" id="Lzs-6n-xJO"/>
-                            <constraint firstItem="zev-IQ-hDu" firstAttribute="leading" secondItem="5Bp-qa-Rtv" secondAttribute="trailing" constant="39.666666666666629" id="NPs-oB-wyH"/>
+                            <constraint firstItem="zev-IQ-hDu" firstAttribute="leading" relation="lessThanOrEqual" secondItem="5Bp-qa-Rtv" secondAttribute="trailing" priority="800" constant="20" id="NPs-oB-wyH"/>
                             <constraint firstItem="zev-IQ-hDu" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="NqQ-qE-VXq"/>
                             <constraint firstItem="5Bp-qa-Rtv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="PoN-wn-eLa"/>
                             <constraint firstItem="YnN-HM-6le" firstAttribute="width" secondItem="6kb-U0-KRs" secondAttribute="width" multiplier="0.5" id="Rvx-ul-t0C"/>
