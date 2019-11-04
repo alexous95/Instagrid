@@ -41,6 +41,10 @@ class ViewController: UIViewController {
     setupButton()
   }
   
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    setupSwipeGesture()
+  }
+  
   
   // MARK: - PRIVATE
   
@@ -137,18 +141,21 @@ class ViewController: UIViewController {
   /// This function is used to setup the swipe gestures and add them to the view
   private func setupSwipeGesture(){
     // We first create a swipeGestureRecognizer
-    let swipeGestureRecongnizerUp  = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
-    let swipeGestureRecognizerLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
+    let swipeGestureRecongnizer  = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
     
-    // We specify his direction
-    swipeGestureRecongnizerUp.direction  = .up
-    swipeGestureRecognizerLeft.direction = .left
-    
-    // Then we had this gesture to the targeted view
-    shareView.addGestureRecognizer(swipeGestureRecongnizerUp)
-    shareView.addGestureRecognizer(swipeGestureRecognizerLeft)
-  }
+    if UIApplication.shared.statusBarOrientation.isPortrait {
+      print("on est en portrait")
+      swipeGestureRecongnizer.direction = .up
+    }
+    else {
+      print("on est en landscape")
+      swipeGestureRecongnizer.direction = .left
+    }
   
+    // Then we had this gesture to the targeted view
+    shareView.addGestureRecognizer(swipeGestureRecongnizer)
+  }
+    
   /// This function is used to setup the buttons and to give them tags so they can be recognized
   private func setupButton(){
     topRectangleButton.isHidden = true
