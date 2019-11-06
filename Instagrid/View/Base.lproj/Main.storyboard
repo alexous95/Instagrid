@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="landscape" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -21,14 +21,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Instagrid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zev-IQ-hDu">
-                                <rect key="frame" x="248.66666666666663" y="50" width="315" height="315"/>
+                                <rect key="frame" x="20" y="238.66666666666663" width="335" height="335"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vG-Sq-He6" userLabel="BottomRectangleButton">
-                                        <rect key="frame" x="17.000000000000028" y="165.66666666666663" width="281" height="132.33333333333337"/>
+                                        <rect key="frame" x="17" y="177.00000000000003" width="301" height="140.99999999999997"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" image="plus"/>
@@ -37,7 +37,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3B3-KB-MuW" userLabel="TopRectangleButton">
-                                        <rect key="frame" x="17.000000000000028" y="17" width="281" height="132.33333333333334"/>
+                                        <rect key="frame" x="17" y="17" width="301" height="140.66666666666666"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" image="plus"/>
@@ -46,7 +46,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kb-U0-KRs" userLabel="BottomLeftButton">
-                                        <rect key="frame" x="17.000000000000028" y="165.66666666666663" width="132" height="132.33333333333337"/>
+                                        <rect key="frame" x="17" y="177.00000000000003" width="140.66666666666666" height="140.99999999999997"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="plus"/>
                                         <connections>
@@ -54,7 +54,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvn-Ce-63W" userLabel="TopLeftButton">
-                                        <rect key="frame" x="17.000000000000028" y="17" width="132" height="132.33333333333334"/>
+                                        <rect key="frame" x="17" y="17" width="140.66666666666666" height="140.66666666666666"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="plus"/>
                                         <connections>
@@ -62,7 +62,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaI-nk-TC3" userLabel="TopRightButton">
-                                        <rect key="frame" x="165.66666666666663" y="17" width="132.33333333333337" height="132.33333333333334"/>
+                                        <rect key="frame" x="177.33333333333337" y="17" width="140.66666666666663" height="140.66666666666666"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="plus"/>
                                         <connections>
@@ -70,7 +70,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UE9-Wt-wkR" userLabel="BottomRightButton">
-                                        <rect key="frame" x="165.66666666666663" y="165.66666666666663" width="132.33333333333337" height="132.33333333333337"/>
+                                        <rect key="frame" x="177.33333333333337" y="177.00000000000003" width="140.66666666666663" height="140.99999999999997"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="plus"/>
                                         <connections>
@@ -245,23 +245,23 @@
                                 </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BO7-37-w1D">
-                                <rect key="frame" x="345" y="4.6666666666666714" width="122.33333333333331" height="40.333333333333329"/>
+                                <rect key="frame" x="20" y="54" width="335" height="40.333333333333343"/>
                                 <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="31"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ndG-9n-g7e" userLabel="Layout Stack View">
-                                <rect key="frame" x="682" y="76.666666666666629" width="66" height="288.33333333333337"/>
+                                <rect key="frame" x="47" y="677.66666666666663" width="281" height="70.333333333333371"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fsz-D6-Fbz" userLabel="Layout1Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="70.333333333333329" height="70.333333333333329"/>
                                         <state key="normal" backgroundImage="Layout1"/>
                                         <connections>
                                             <action selector="buttonLayoutWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ker-PJ-tg6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lU-6u-M6M" userLabel="Layout2Button">
-                                        <rect key="frame" x="0.0" y="111" width="66" height="66.333333333333314"/>
+                                        <rect key="frame" x="105.33333333333334" y="0.0" width="70.333333333333343" height="70.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" backgroundImage="Layout2"/>
                                         <connections>
@@ -269,7 +269,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnN-HM-6le" userLabel="Layout3Button">
-                                        <rect key="frame" x="0.0" y="222.33333333333331" width="66" height="66"/>
+                                        <rect key="frame" x="210.66666666666669" y="0.0" width="70.333333333333314" height="70.333333333333329"/>
                                         <state key="normal" backgroundImage="Layout3"/>
                                         <connections>
                                             <action selector="buttonLayoutWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m9a-SD-pYg"/>
@@ -280,7 +280,7 @@
                                 <variation key="heightClass=regular-widthClass=compact" axis="horizontal" spacing="35"/>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Bp-qa-Rtv" userLabel="ShareView" customClass="ShareView" customModule="Instagrid" customModuleProvider="target">
-                                <rect key="frame" x="54" y="50" width="155" height="315"/>
+                                <rect key="frame" x="20" y="122.66666666666669" width="335" height="96"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2b-yc-aCp">
                                         <rect key="frame" x="18.333333333333329" y="146" width="138" height="23.333333333333343"/>
@@ -298,7 +298,7 @@
                                         </variation>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow Up" translatesAutoresizingMaskIntoConstraints="NO" id="o8l-wi-WEU">
-                                        <rect key="frame" x="65.666666666666671" y="125.33333333333336" width="23.333333333333329" height="12.666666666666671"/>
+                                        <rect key="frame" x="150.66666666666666" y="39.999999999999986" width="33.666666666666657" height="16.666666666666671"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="at4-CO-2yy"/>
                                             <constraint firstAttribute="height" constant="16.666666666666671" id="nB6-De-bx0"/>

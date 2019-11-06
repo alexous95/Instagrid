@@ -37,61 +37,132 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupSwipeGesture()
     setupButton()
+    setupSwipeGesture()
   }
-  
   
   // MARK: - PRIVATE
   
+  /// This function is used to setup the buttons and to give them tags so they can be recognized
+  private func setupButton(){
+    topRectangleButton.isHidden = true
+    bottomLeftButton.isHidden = true
+    bottomRightButton.isHidden = true
+    
+    topRectangleButton.tag = 1
+    bottomRectangleButton.tag = 2
+    bottomLeftButton.tag = 3
+    bottomRightButton.tag = 4
+    topLeftButton.tag = 5
+    topRightButton.tag = 6
+    
+    layout1Button.tag = 10
+    layout2Button.tag = 20
+    layout2Button.setImage(UIImage(named: "rectangleDownSelected"), for: .normal)
+    layout3Button.tag = 30
+  }
+  
+  /// This function is used to setup the swipe gestures and add them to the view
+  private func setupSwipeGesture(){
+    // We first create a swipeGestureRecognizer
+    let swipeGestureRecongnizerUp  = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
+    let swipeGestureRecognizerLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
+    
+    // We specify his direction
+    swipeGestureRecongnizerUp.direction  = .up
+    swipeGestureRecognizerLeft.direction = .left
+    
+    // Then we had this gesture to the targeted view
+    shareView.addGestureRecognizer(swipeGestureRecongnizerUp)
+    shareView.addGestureRecognizer(swipeGestureRecognizerLeft)
+  }
+  
   /// This is the function called in the selector from the SwipeGesture initializer
   @objc private func swipeView(_ sender: UISwipeGestureRecognizer) {
-    switch sender.direction {
-    // If direction is up then we call the transform function with
-    case .up:
-      transformGridViewWith(gestureDirection: sender)
-      
-    case .left:
-      transformGridViewWith(gestureDirection: sender)
-    default :
-      break
-    }
+    
+    transformGridViewWith(gestureDirection: sender)
+    /* switch sender.direction {
+     // If direction is up then we call the transform function with
+     case .up:
+     transformGridViewWith(gestureDirection: sender)
+     
+     case .left:
+     transformGridViewWith(gestureDirection: sender)
+     default :
+     break
+     }*/
   }
   
   /// This function create a translation movement for our view
   private func transformGridViewWith(gestureDirection: UISwipeGestureRecognizer) {
-    switch gestureDirection.direction {
-    case .up:
-      // We create a transformation to move the gridView out of the screen
-      let translationTransform = CGAffineTransform(translationX: 0.0, y: -screenHeight)
-      
-      // Now we animate that transition with the animate method from UIView
-      UIView.animate(withDuration: 1.0, animations: {
-        self.gridView.transform = translationTransform
-      }) { success in
-        if success {
-          // if the animation is successful we call another function in the completion closure
-          let image = RenderImage.createImage(from: self.gridView)
-          self.shareGridView(image: image)
+    let direction = gestureDirection.direction
+    
+    if UIApplication.shared.statusBarOrientation.isPortrait == true {
+      if direction == .up {
+        print("on est la dans le portrait")
+        let translationTransform = CGAffineTransform(translationX: 0.0, y: -screenHeight*1.5)
+        
+        // Now we animate that transition with the animate method from UIView
+        UIView.animate(withDuration: 1.0, animations: {
+          self.gridView.transform = translationTransform
+        }) { success in
+          if success {
+            // if the animation is successful we call another function in the completion closure
+            let image = RenderImage.createImage(from: self.gridView)
+            self.shareGridView(image: image)
+          }
         }
       }
-      
-    case .left:
-      let translationTransform = CGAffineTransform(translationX: -screenWidth*2, y: 0.0)
-      
-      // Now we animate that transition with the animate method from UIView
-      UIView.animate(withDuration: 1.0, animations: {
-        self.gridView.transform = translationTransform
-      }) { (success) in
-        if success {
-          // if the animation is successful we call another function in the completion closure
-          let image = RenderImage.createImage(from: self.gridView)
-          self.shareGridView(image: image)
-        }
-      }
-    default:
-      break
     }
+    else {
+      if direction == .left {
+        print("on est la dans le landscape")
+        let translationTransform = CGAffineTransform(translationX: -screenWidth*1.5, y: 0.0)
+        
+        // Now we animate that transition with the animate method from UIView
+        UIView.animate(withDuration: 1.0, animations: {
+          self.gridView.transform = translationTransform
+        }) { (success) in
+          if success {
+            // if the animation is successful we call another function in the completion closure
+            let image = RenderImage.createImage(from: self.gridView)
+            self.shareGridView(image: image)
+          }
+        }
+      }
+    }
+    /* switch gestureDirection.direction {
+     case .up:
+     // We create a transformation to move the gridView out of the screen
+     let translationTransform = CGAffineTransform(translationX: 0.0, y: -screenHeight)
+     
+     // Now we animate that transition with the animate method from UIView
+     UIView.animate(withDuration: 1.0, animations: {
+     self.gridView.transform = translationTransform
+     }) { success in
+     if success {
+     // if the animation is successful we call another function in the completion closure
+     let image = RenderImage.createImage(from: self.gridView)
+     self.shareGridView(image: image)
+     }
+     }
+     
+     case .left:
+     let translationTransform = CGAffineTransform(translationX: -screenWidth*2, y: 0.0)
+     
+     // Now we animate that transition with the animate method from UIView
+     UIView.animate(withDuration: 1.0, animations: {
+     self.gridView.transform = translationTransform
+     }) { (success) in
+     if success {
+     // if the animation is successful we call another function in the completion closure
+     let image = RenderImage.createImage(from: self.gridView)
+     self.shareGridView(image: image)
+     }
+     }
+     default:
+     break
+     }*/
   }
   
   /// This function create an activity controller to share our images
@@ -132,41 +203,6 @@ class ViewController: UIViewController {
       let imageData = try! Data(contentsOf: url, options: [])
       button.setImage(UIImage(data: imageData), for: .normal)
     }
-  }
-  
-  /// This function is used to setup the swipe gestures and add them to the view
-  private func setupSwipeGesture(){
-    // We first create a swipeGestureRecognizer
-    let swipeGestureRecongnizerUp  = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
-    let swipeGestureRecognizerLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeView(_:)))
-    
-    // We specify his direction
-    swipeGestureRecongnizerUp.direction  = .up
-    swipeGestureRecognizerLeft.direction = .left
-    
-    // Then we had this gesture to the targeted view
-    shareView.addGestureRecognizer(swipeGestureRecongnizerUp)
-    shareView.addGestureRecognizer(swipeGestureRecognizerLeft)
-  }
-  
-  /// This function is used to setup the buttons and to give them tags so they can be recognized
-  private func setupButton(){
-    topRectangleButton.isHidden = true
-    bottomLeftButton.isHidden = true
-    bottomRightButton.isHidden = true
-    
-    topRectangleButton.tag = 1
-    bottomRectangleButton.tag = 2
-    bottomLeftButton.tag = 3
-    bottomRightButton.tag = 4
-    topLeftButton.tag = 5
-    topRightButton.tag = 6
-    
-    layout1Button.tag = 10
-    layout2Button.tag = 20
-    layout2Button.setImage(UIImage(named: "rectangleDownSelected"), for: .normal)
-    layout3Button.tag = 30
-    
   }
   
   /// This function is used to change the layout when a layout button is pressed
