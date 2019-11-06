@@ -79,18 +79,7 @@ class ViewController: UIViewController {
   
   /// This is the function called in the selector from the SwipeGesture initializer
   @objc private func swipeView(_ sender: UISwipeGestureRecognizer) {
-    
     transformGridViewWith(gestureDirection: sender)
-    /* switch sender.direction {
-     // If direction is up then we call the transform function with
-     case .up:
-     transformGridViewWith(gestureDirection: sender)
-     
-     case .left:
-     transformGridViewWith(gestureDirection: sender)
-     default :
-     break
-     }*/
   }
   
   /// This function create a translation movement for our view
@@ -99,7 +88,6 @@ class ViewController: UIViewController {
     
     if UIApplication.shared.statusBarOrientation.isPortrait == true {
       if direction == .up {
-        print("on est la dans le portrait")
         let translationTransform = CGAffineTransform(translationX: 0.0, y: -screenHeight*1.5)
         
         // Now we animate that transition with the animate method from UIView
@@ -116,7 +104,6 @@ class ViewController: UIViewController {
     }
     else {
       if direction == .left {
-        print("on est la dans le landscape")
         let translationTransform = CGAffineTransform(translationX: -screenWidth*1.5, y: 0.0)
         
         // Now we animate that transition with the animate method from UIView
@@ -131,58 +118,36 @@ class ViewController: UIViewController {
         }
       }
     }
-    /* switch gestureDirection.direction {
-     case .up:
-     // We create a transformation to move the gridView out of the screen
-     let translationTransform = CGAffineTransform(translationX: 0.0, y: -screenHeight)
-     
-     // Now we animate that transition with the animate method from UIView
-     UIView.animate(withDuration: 1.0, animations: {
-     self.gridView.transform = translationTransform
-     }) { success in
-     if success {
-     // if the animation is successful we call another function in the completion closure
-     let image = RenderImage.createImage(from: self.gridView)
-     self.shareGridView(image: image)
-     }
-     }
-     
-     case .left:
-     let translationTransform = CGAffineTransform(translationX: -screenWidth*2, y: 0.0)
-     
-     // Now we animate that transition with the animate method from UIView
-     UIView.animate(withDuration: 1.0, animations: {
-     self.gridView.transform = translationTransform
-     }) { (success) in
-     if success {
-     // if the animation is successful we call another function in the completion closure
-     let image = RenderImage.createImage(from: self.gridView)
-     self.shareGridView(image: image)
-     }
-     }
-     default:
-     break
-     }*/
   }
   
   /// This function create an activity controller to share our images
   private func shareGridView(image: UIImage) {
     let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
     activityController.completionWithItemsHandler = { (UIActivityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-      self.backGridView()
+      self.backGridView(success: completed)
     }
     present(activityController, animated: true, completion: nil)
   }
   
   /// This function brings back the gridView to his original location with a dumping effect
-  private func backGridView() {
-    gridView.transform = .identity
-    gridView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-    
-    UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.2, options: [], animations: {
-      self.gridView.transform = .identity
-      self.originalGridView()
-    }, completion: nil)
+  private func backGridView(success : Bool) {
+    if success {
+      gridView.transform = .identity
+      gridView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+      
+      UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.2, options: [], animations: {
+        self.gridView.transform = .identity
+        self.originalGridView()
+      }, completion: nil)
+    }
+    else {
+      gridView.transform = .identity
+      gridView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+      
+      UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.2, options: [], animations: {
+        self.gridView.transform = .identity
+      }, completion: nil)
+    }
   }
   
   /// This functions brings back the grid view to its original state
@@ -215,7 +180,6 @@ class ViewController: UIViewController {
       topRightButton.isHidden = true
       topLeftButton.isHidden = true
       bottomRectangleButton.isHidden = true
-      originalGridView()
       
     case 2:
       topRectangleButton.isHidden = true
@@ -224,7 +188,6 @@ class ViewController: UIViewController {
       topRightButton.isHidden = false
       topLeftButton.isHidden = false
       bottomRectangleButton.isHidden = false
-      originalGridView()
       
     case 3:
       topRectangleButton.isHidden = true
@@ -233,7 +196,6 @@ class ViewController: UIViewController {
       topRightButton.isHidden = false
       topLeftButton.isHidden = false
       bottomRectangleButton.isHidden = true
-      originalGridView()
       
     default:
       print("oops")

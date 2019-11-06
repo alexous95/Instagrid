@@ -78,7 +78,6 @@
 		FA81E95B2344DDEC00EF0678 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FA233E1223505C30002E0667 /* RenderImage.swift */,
 				FA003EF4235DA2A9000B9A92 /* ImageModel.swift */,
 			);
 			path = Model;
@@ -110,6 +109,7 @@
 				FA5B8E12234497D800C22586 /* Assets.xcassets */,
 				FA5B8E1E23449DB800C22586 /* Delm-Medium.otf */,
 				FA5B8E2023449DD400C22586 /* ThirstySoftRegular.otf */,
+				FA233E1223505C30002E0667 /* RenderImage.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
